@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<div class="message-box">
+  <h2>Room Code: {{code}}</h2>
+  <h2>{{name}}</h2>
+  <button class = "buzzer" type="button" onClick="sendMessage()">
+    BUZZ!!!
+  </button>
+</div>
+<script type="text/javascript">
+  var socketio = io();
+  const sendMessage = () => {
+    socketio.emit("message");
+  };
+</script>
+{% endblock %}
