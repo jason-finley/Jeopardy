@@ -6,7 +6,7 @@ from string import ascii_uppercase
 # Create the Flask application instance
 app = Flask(__name__)
 # Set the secret key for session management
-app.config["SECRET_KEY"] = "6464"
+app.config["SECRET_KEY"] = "0000"
 # Initialize SocketIO with the Flask app
 socketio = SocketIO(app)
 
