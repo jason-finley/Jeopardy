@@ -1,16 +1,52 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+
+{% block content %}
 <div class="message-box">
   <h2>Room Code: {{code}}</h2>
   <h2>{{name}}</h2>
-  <button class = "buzzer" type="button" onClick="sendMessage()">
+  <!-- Button to send a "buzzed in" message -->
+  <button class="buzzer" type="button" id="buzzerButton" onClick="sendMessage()">
     BUZZ!!!
   </button>
+  <!-- This h2 element will display the countdown timer -->
+  <h2 id="countdown"></h2>
 </div>
 <script type="text/javascript">
+  // Initialize the socket connection
   var socketio = io();
+  
+  // Function to send a message and start the countdown
   const sendMessage = () => {
-    socketio.emit("message");
-    setTimeout(() => {}, 5000);
+    // Emit a "message" event with the data "buzzed in"
+    socketio.emit("message", "buzzed in");
+
+    // Disable the button to prevent multiple clicks
+    document.getElementById('buzzerButton').disabled = true;
+
+    // Initialize the countdown timer with 5 seconds
+    let timeLeft = 5;
+    
+    // Get the countdown element to display the time left
+    const countdownElement = document.getElementById('countdown');
+    countdownElement.textContent = `Time left: ${timeLeft} seconds`;
+
+    // Create an interval to update the countdown every second
+    const countdownInterval = setInterval(() => {
+      // Decrement the time left by 1 second
+      timeLeft -= 1;
+
+      // If time is left, update the countdown text
+      if (timeLeft > 0) {
+        countdownElement.textContent = `Time left: ${timeLeft} seconds`;
+      } else {
+        // If no time is left, clear the countdown text and re-enable the button
+        countdownElement.textContent = '';
+        document.getElementById('buzzerButton').disabled = false;
+        
+        // Clear the interval to stop the countdown
+        clearInterval(countdownInterval);
+      }
+    }, 1000); // Set the interval to 1000 milliseconds (1 second)
   };
 </script>
 {% endblock %}
