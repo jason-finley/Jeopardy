@@ -10,6 +10,7 @@
   var socketio = io();
   const sendMessage = () => {
     socketio.emit("message");
+    setTimeout(() => {}, 5000);
   };
 </script>
 {% endblock %}
