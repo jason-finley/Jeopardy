@@ -1,33 +1,34 @@
 import tkinter
 from graphics import *
 import json
+from random import randint
+from time import sleep
 
 
 # images must be png
-# image name examples: 11Q.png, 42A.png, 94A.png
+# image name examples: 11Q.png, 11A.png, 94A.png
 # window size: 1602x1002
 
 
-def gameWindow(titles, round):
-    # Create a game window with categories and questions
-    win = GraphWin("Jeopardy", 1602, 1002)
+def gameWindow(titles, round): # Create a game window with categories and questions
+    win = GraphWin("Jasonpardy", 1602, 1002)
     win.setBackground("light blue")
 
-    boxes = []  # List to store question cards (Rectangles)
-    labels = []  # List to store labels on question cards (Text)
+    boxes = []  # List to store question card objects (Rectangles)
+    labels = []  # List to store labels on question card text objects
 
-    # Create title cards for each category
+    # Create category title cards
     for i in range(6):
         titlecard = Rectangle(Point((int(i))*267, 0), Point((int(i)+1)*267, 167))
         titlecard.setFill("Blue")
         titlecard.draw(win)
         title_label = Text(Point((int(i)+0.5)*267, (0.5)*167), titles[i])
         title_label.setStyle("bold")
-        title_label.setSize(28)
+        title_label.setSize(26)
         title_label.setFill("white")
         title_label.draw(win)
 
-        # Create question cards for each question in the category
+        # Create question card objects for each question in the category
         for j in range(5):
             quesiton_card = Rectangle(Point((int(i))*267, (int(j)+1)*167), Point((int(i)+1)*267, (int(j)+2)*167))
             quesiton_card.setFill("Blue")
@@ -65,51 +66,88 @@ def clicked(click, rect): # Check if a point (click) is within a given rectangle
 
     return (x1 < mx < x2) and (y1 < my < y2)
 
-def question(question_data, column, row, title=""):
-    # Display a question or answer window
+
+def question(question_data, title, column = None, row = None, daydub = False, fj = False): # Display question/answer window
     win2 = GraphWin("Jeopardy", 1602, 1002)
     win2.setBackground("light blue")
 
-    # Display the title of the category
+    # Display the title of the category with point value
+    if not fj:
+        points_str = str(row*200 + 200)
+        title = title + "\n" + points_str
     title_label = Text(Point(801, 90), title)
     title_label.setStyle("bold italic")
     title_label.setSize(28)
     title_label.setFill("black")
     title_label.draw(win2)
 
-    # Display the question or answer text
+    if daydub: # Check if chosen question is the daily double
+        daydub_label = Text(Point(801, 501), "! ! ! DAILY ! ! !\n! ! ! DOUBLE ! ! !")
+        daydub_label.setStyle("bold")
+        daydub_label.setSize(36)
+        daydub_label.setFill("black")
+        daydub_label.draw(win2)
+
+        while True:
+            click = win2.checkMouse()
+            if click:
+                break
+
+        daydub_label.undraw()
+
+    # Display the question text and image if provided
     question_label = Text(Point(801, 501), question_data[0][1])
     question_label.setStyle("bold")
     question_label.setSize(28)
     question_label.setFill("black")
     question_label.draw(win2)
 
-    if question_data[0][0] == True: # If it's a quesition with an image
-        # Load and display the image
-        image = Image(Point(801, 420), "images\\" + str(column + 1) + str(row + 1) + "Q.png")
+    if question_data[0][0] == True: # Load and display the image
+        if not fj:
+            image_dir = "images\\" + str(column + 1) + str(row + 1) + "Q.png"
+        else:
+            image_dir = "images\\FJQ.png"
+        image = Image(Point(801, 420), image_dir)
         image.draw(win2)
         imgHeight = image.getHeight()
         dy = (((1002 - (420 + imgHeight/2)) / 2) + 420 + imgHeight/2) - 501
         question_label.move(0, dy)
+
+    # Display question countdown
+    count = 11
+    count_label = Text(Point(1200, 90), str(count))
+    count_label.setStyle("bold italic")
+    count_label.setSize(36)
+    count_label.setFill("red")
+    count_label.draw(win2)
 
     # Wait for a click in the window
     while True:
         click = win2.checkMouse()
         if click:
             break
+        elif count != 0:
+            count -= 1
+            count_label.setText(str(count))
+        sleep(1)
 
-    # If there was an image for question
+    # Remove countdown
+    count_label.undraw()
+
+    # Delete image and return question label to center of window
     if question_data[0][0] == True:
-        # Delete image and return question label to center of window
         image.undraw()
         question_label.move(0, -1 * dy)
 
     # Display the answer text
     question_label.setText(question_data[1][1])
 
-    if question_data[1][0] == True: # If it's an answer with an image
-        # Load and display the imgae
-        image = Image(Point(801, 420), "images\\" + str(column + 1) + str(row + 1) + "A.png")
+    if question_data[1][0] == True: # Load and display the image
+        if not fj:
+            image_dir = "images\\" + str(column + 1) + str(row + 1) + "A.png"
+        else:
+            image_dir = "images\\FJA.png"
+        image = Image(Point(801, 420), image_dir)
         image.draw(win2)
         imgHeight = image.getHeight()
         dy = (((1002 - (420 + imgHeight/2)) / 2) + 420 + imgHeight/2) - 501
@@ -125,32 +163,36 @@ def question(question_data, column, row, title=""):
     win2.close()
 
 
-def gameboard():
-    # read questions from a JSON file
-    file = open("questions.json", "r")
+def gameboard_main(): # Read questions from a JSON file
+    file = open("temp_questions.json", "r")
     data = json.load(file)
-    keys = [list(data[0].keys()), list(data[1].keys()), list(data[2].keys())]  # Store category title names as dict keys
+    keys = list(data.keys())  # Store category title names as dict keys
 
-    # Loop throught the categories and display the game window
-    for i in range(2):
-        win, boxes, labels = gameWindow(keys[i], int(i)+1)
-        questions_answered = []
+    # Create game window with given categories and round number (round number currently set to 1)
+    win, boxes, labels = gameWindow(keys, 1)
+    questions_answered = set()
+    daily_double_int = randint(0, 30)
 
-        # Loop until all 30 questions in the round are answered
-        while len(questions_answered) < 30:
-            click = win.checkMouse()
-            for j in range(len(boxes)):
-                if clicked(click, boxes[j]):
-                    boxes[j].undraw()
-                    labels[j].undraw()
-                    question(data[i][keys[i][int(j/5)]][j%5], int((i*6) + (j/5)), j%5)
-                    if j not in questions_answered:
-                        questions_answered.append(j)
+    # Loop until all 30 questions in the round are answered
+    while len(questions_answered) > 30:
+        click = win.checkMouse()
 
-        win.close() # Close round window
+        for j in range(30): # Check all 30 question object boxes if they have been clicked on
+            if clicked(click, boxes[j]):
+                boxes[j].undraw()
+                labels[j].undraw()
+
+                daydub = (j == daily_double_int) # Boolean if daily double
+
+                question(data[keys[int(j/5)]][j%5], title=keys[int(j/5)], column=int(j/5), row=int(j%5), daydub=daydub) # Open question window
+
+                questions_answered.add(j) # Add question index to answered list
 
     # Display the final question
-    question(data[2][keys[2][0]][0], 17, 1, title = keys[2][0])
+    question(data[keys[-1]], title = keys[-1], fj=True)
 
-# Run the gameboard function to start the Jeopardy game
-gameboard()
+    win.close() # Close round window
+
+
+if __name__ == "__main__":
+    gameboard_main()
