@@ -119,6 +119,8 @@ def question(question_data, title, column = None, row = None, daydub = False, fj
     count_label.setStyle("bold italic")
     count_label.setSize(36)
     count_label.setFill("red")
+    if fj:
+        count_label.setFill("light blue")
     count_label.draw(win2)
 
     # Wait for a click in the window
@@ -174,7 +176,7 @@ def gameboard_main(): # Read questions from a JSON file
     daily_double_int = randint(0, 30)
 
     # Loop until all 30 questions in the round are answered
-    while len(questions_answered) > 30:
+    while len(questions_answered) < 30:
         click = win.checkMouse()
 
         for j in range(30): # Check all 30 question object boxes if they have been clicked on
