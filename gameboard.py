@@ -6,7 +6,7 @@ from time import sleep
 
 
 # images must be png
-# image name examples: 11Q.png, 11A.png, 94A.png
+# image name examples: 11Q.png, 11A.png, FJA.png
 # window size: 1602x1002
 
 
