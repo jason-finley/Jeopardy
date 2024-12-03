@@ -1,279 +1,140 @@
-[
-    {
-        "title1": [
-            [
-                [false, "This is where question1 is put"],
-                [false, "This is the answer to question1"]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title2": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title3": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title4": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title5": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title6": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ]
-    },
-    {
-        "title7": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title8": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title9": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title10": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title11": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ],
-        "title12": [
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ],
-            [
-                [false, ""],
-                [false, ""]
-            ]
-        ]
-    },
-    {
-        "Final Jeopardy",
+
+{
+    "Category 1\nTitle": [
         [
-            [
-                [false, ""],
-                [false, ""]
-            ]
+            [false, "Text for 11Q"],
+            [false, "Text for 11A"]
+        ],
+        [
+            [false, "Text for 12Q."],
+            [false, "Text for 12A"]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
         ]
-    }
-]
+    ],
+    "Category 2\nTitle": [
+        [
+            [false, "Text for 21Q"],
+            [false, "Text for 21A"]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ]
+    ],
+    "Category 3\nTitle": [
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ]
+    ],
+    "Category 4\nTitle": [
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ]
+    ],
+    "Category 5\nTitle": [
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ]
+    ],
+    "Category 6\nTitle": [
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ],
+        [
+            [false, ""],
+            [false, ""]
+        ]
+    ],
+    "Final Jeopardy":
+    [
+        [false, "Text for FJQ"],
+        [false, "Text for FJA"]
+    ]
+}
